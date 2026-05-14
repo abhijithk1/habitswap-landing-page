@@ -6,7 +6,7 @@ import PrivacyPage from './pages/PrivacyPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<LandingPage />} />
