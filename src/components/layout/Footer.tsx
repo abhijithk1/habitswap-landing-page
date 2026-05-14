@@ -28,9 +28,9 @@ export default function Footer() {
 
           {/* Links */}
           <div className="flex flex-col space-y-3">
-            <a href="/#features" className="text-muted hover:text-primary-light transition-colors font-medium">Features</a>
-            <a href="/#how-it-works" className="text-muted hover:text-primary-light transition-colors font-medium">How It Works</a>
-            <a href="/#download" className="text-muted hover:text-primary-light transition-colors font-medium">Download</a>
+            <a href={`${import.meta.env.BASE_URL}#features`} className="text-muted hover:text-primary-light transition-colors font-medium">Features</a>
+            <a href={`${import.meta.env.BASE_URL}#how-it-works`} className="text-muted hover:text-primary-light transition-colors font-medium">How It Works</a>
+            <a href={`${import.meta.env.BASE_URL}#download`} className="text-muted hover:text-primary-light transition-colors font-medium">Download</a>
           </div>
 
           {/* Legal */}

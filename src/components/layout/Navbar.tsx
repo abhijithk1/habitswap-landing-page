@@ -10,7 +10,7 @@ export default function Navbar() {
   const handleScrollTo = (id: string) => {
     setIsOpen(false);
     if (location.pathname !== '/') {
-      window.location.href = `/#${id}`;
+      window.location.href = `${import.meta.env.BASE_URL}#${id}`;
       return;
     }
     const element = document.getElementById(id);
