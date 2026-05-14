@@ -1,20 +1,47 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Habit Swap
 
-# Run and deploy your AI Studio app
+Habit Swap intercepts your urges and offers instant, contextual alternatives that rewire your brain over time. Replace urges. Rewire your brain.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/daccbbb6-5b31-4456-8c66-3a783deaf54b
+- Intercept urges with contextual alternatives
+- Build better habits with a neuroscience-backed approach
+- Dark mode optimized interface with primary purple branding
+- Smooth, modern animated landing page
 
-## Run Locally
+## Tech Stack
 
-**Prerequisites:**  Node.js
+- **React 19**
+- **TypeScript**
+- **Vite**
+- **Tailwind CSS (v4)**
+- **Motion (Framer Motion)** for animations
+- **Lucide React** for icons
 
+## Project Structure
+
+- `src/components`: Reusable UI components
+- `src/components/layout`: Layout wrappers like Navbar and Footer
+- `src/App.tsx` & `src/main.tsx`: Main application entry points
+- `src/index.css`: Global styling including Tailwind directives
+
+## Getting Started
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Design
+
+The site uses a custom purple gradient theme designed to convey focus and transformation, paired with modern geometric UI patterns, blur effects, and smooth motion transitions.
