@@ -3,12 +3,12 @@ import { Star } from 'lucide-react';
 
 const SocialProof = () => {
   const quotes = [
-    { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "@user1" },
-    { text: "The science behind this is legit. My urges are way weaker.", author: "@user2" },
-    { text: "Best dopamine detox tool out there. So simple.", author: "@user3" },
-    { text: "The 2-hour grace period actually kept me from giving up entirely.", author: "@user4" },
-    { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "@user1" },
-    { text: "The science behind this is legit. My urges are way weaker.", author: "@user2" },
+    { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "Abhijith K" },
+    { text: "The science behind this is legit. My urges are way weaker.", author: "Akshay N Shaju" },
+    { text: "Best dopamine detox tool out there. So simple.", author: "Shihabudeen" },
+    { text: "The 2-hour grace period actually kept me from giving up entirely.", author: "Midhun GG" },
+    { text: "Replaced my bad habits so smoothly, highly recommend it.", author: "Donal Joyce" },
+    { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "Abhijith K" },
   ];
 
   return (
