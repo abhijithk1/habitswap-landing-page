@@ -1,20 +1,21 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { Zap, Target, BrainCircuit } from 'lucide-react';
 
 const HowItWorksSection = () => {
   const steps = [
     {
-      emoji: "⚡",
+      icon: Zap,
       title: "Feel the urge",
       description: "Hit the big button the moment you feel the pull."
     },
     {
-      emoji: "🎯",
+      icon: Target,
       title: "Do the swap task",
       description: "Quick activities that interrupt and replace the pattern."
     },
     {
-      emoji: "🧠",
+      icon: BrainCircuit,
       title: "Watch your brain rewire",
       description: "Track progress as new neural pathways form."
     }
@@ -57,7 +58,9 @@ const HowItWorksSection = () => {
                   className="ml-6 md:ml-0 md:mt-6 md:text-center pb-12 w-full max-w-[320px]"
                 >
                   <div className="flex items-center gap-3 md:justify-center mb-2">
-                    <span className="text-[28px] leading-none">{step.emoji}</span>
+                    <span className="text-primary flex items-center justify-center bg-primary/20 w-8 h-8 rounded-full">
+                      <step.icon className="w-4 h-4" />
+                    </span>
                     <h3 className="text-white font-bold text-[18px]">{step.title}</h3>
                   </div>
                   <p className="text-primary-light text-[14px] leading-relaxed md:px-4">

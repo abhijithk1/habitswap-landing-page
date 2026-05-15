@@ -1,35 +1,36 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { MousePointerClick, Brain, ShieldAlert, Award, ActivitySquare, Share2 } from 'lucide-react';
 
 const FeaturesSection = () => {
   const features = [
     {
-      emoji: "🔴",
+      icon: MousePointerClick,
       title: "Instant Swap Button",
       description: "Large, pulsing trigger. No friction — just tap and swap."
     },
     {
-      emoji: "🧠",
+      icon: Brain,
       title: "Smart Swap Selection",
       description: "Context-aware tasks matched to your urge type, time, and location."
     },
     {
-      emoji: "🛡️",
+      icon: ShieldAlert,
       title: "Streak Protector",
       description: "2-hour grace period. Protect your progress without guilt."
     },
     {
-      emoji: "🏆",
+      icon: Award,
       title: "Streak Milestones",
       description: "Animated celebrations at 3, 7, 14, and 30-day streaks."
     },
     {
-      emoji: "📊",
+      icon: ActivitySquare,
       title: "Brain Rewire Dashboard",
       description: "7-day heatmap, danger window insights, and animated arc progress."
     },
     {
-      emoji: "📤",
+      icon: Share2,
       title: "Social Sharing",
       description: "Share progress cards with friends and stay accountable."
     }
@@ -52,7 +53,9 @@ const FeaturesSection = () => {
             transition={{ delay: i * 0.08, duration: 0.5 }}
             className="bg-surface border-2 border-transparent hover:border-primary-bright rounded-[20px] p-8 transition-all duration-250 ease-out hover:-translate-y-1 shadow-card"
           >
-            <div className="text-4xl mb-6">{feature.emoji}</div>
+            <div className="text-primary-light mb-6">
+              <feature.icon className="w-10 h-10" />
+            </div>
             <h3 className="text-white font-bold text-xl mb-3">{feature.title}</h3>
             <p className="text-primary-pale leading-relaxed text-base">
               {feature.description}

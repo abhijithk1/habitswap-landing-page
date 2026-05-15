@@ -1,4 +1,5 @@
 import React from 'react';
+import { Star } from 'lucide-react';
 
 const SocialProof = () => {
   const quotes = [
@@ -22,7 +23,11 @@ const SocialProof = () => {
                 <p className="text-primary-pale text-md mb-3 whitespace-normal leading-relaxed">"{quote.text}"</p>
                 <div className="mt-auto flex items-center justify-between">
                   <span className="text-muted text-sm font-medium">— {quote.author}</span>
-                  <span className="text-accent-amber text-xs tracking-widest">⭐⭐⭐⭐⭐</span>
+                  <div className="flex gap-0.5 text-accent-amber">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-current" />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -36,7 +41,11 @@ const SocialProof = () => {
              <p className="text-primary-pale text-md mb-3 leading-relaxed">"{quote.text}"</p>
              <div className="mt-auto flex items-center justify-between">
                <span className="text-muted text-sm font-medium">— {quote.author}</span>
-               <span className="text-accent-amber text-xs tracking-widest">⭐⭐⭐⭐⭐</span>
+               <div className="flex gap-0.5 text-accent-amber">
+                 {[...Array(5)].map((_, i) => (
+                   <Star key={i} className="w-4 h-4 fill-current" />
+                 ))}
+               </div>
              </div>
            </div>
           ))}

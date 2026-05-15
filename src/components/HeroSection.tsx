@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useInView } from 'motion/react';
-import { CheckCircle2, Shield, Share2, Target, BarChart2, Zap } from 'lucide-react';
+import { Star, Brain, Lock, Flame } from 'lucide-react';
 
 const HeroSection = () => {
   return (
@@ -64,11 +64,11 @@ const HeroSection = () => {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap items-center gap-4 text-muted text-sm font-medium"
             >
-              <span className="flex items-center gap-1.5"><span className="text-accent-amber">⭐</span> 4.9 rating</span>
+              <span className="flex items-center gap-1.5"><Star className="w-4 h-4 text-accent-amber fill-current" /> 4.9 rating</span>
               <span>•</span>
-              <span className="flex items-center gap-1.5">🧠 10,000+ brains rewired</span>
+              <span className="flex items-center gap-1.5"><Brain className="w-4 h-4" /> 10,000+ brains rewired</span>
               <span>•</span>
-              <span className="flex items-center gap-1.5">🔒 No data sold</span>
+              <span className="flex items-center gap-1.5"><Lock className="w-4 h-4" /> No data sold</span>
             </motion.div>
           </div>
 
@@ -119,9 +119,10 @@ const HeroSection = () => {
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ delay: 1, duration: 0.5 }}
-               className="absolute top-10 right-0 sm:right-10 bg-accent-amber/15 border border-accent-amber rounded-full px-5 py-2.5 shadow-amber z-20 backdrop-blur-sm"
+               className="absolute top-10 right-0 sm:right-10 bg-accent-amber/15 border border-accent-amber rounded-full px-5 py-2.5 shadow-amber z-20 backdrop-blur-sm flex items-center gap-2"
              >
-               <span className="text-white font-semibold text-sm">🔥 7 day streak</span>
+               <Flame className="w-4 h-4 text-accent-amber fill-current" />
+               <span className="text-white font-semibold text-sm">7 day streak</span>
              </motion.div>
 
              <motion.div 
