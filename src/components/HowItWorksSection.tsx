@@ -7,63 +7,70 @@ const HowItWorksSection = () => {
     {
       icon: Zap,
       title: "Feel the urge",
-      description: "Hit the big button the moment you feel the pull."
+      description: "Hit the big button the moment you feel the pull. No thinking required."
     },
     {
       icon: Target,
       title: "Do the swap task",
-      description: "Quick activities that interrupt and replace the pattern."
+      description: "Specific activities scientifically designed to interrupt and replace."
     },
     {
       icon: BrainCircuit,
       title: "Watch your brain rewire",
-      description: "Track progress as new neural pathways form."
+      description: "Track your progress as new neural pathways form before your eyes."
     }
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-surface-deep/30 border-y border-purple">
-      <div className="max-w-[640px] mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
-          <p className="text-primary-light font-light text-lg mb-3 tracking-[0.03em]">Simple by design</p>
-          <h2 className="text-white font-extrabold text-[clamp(2rem,4vw,3rem)] tracking-[-0.01em]">Three steps to a rewired brain</h2>
+    <section id="how-it-works" className="py-32 bg-black relative">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-black z-0" />
+      
+      <div className="max-w-[800px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-24 space-y-4">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-white font-black text-[clamp(2.5rem,5vw,5rem)] tracking-tighter leading-none"
+          >
+            Three steps.<br />
+            <span className="text-gray-500">Perfectly simple.</span>
+          </motion.h2>
         </div>
 
-        <div className="space-y-4 relative ml-4 md:ml-0 md:flex md:flex-col md:items-center">
+        <div className="space-y-12 relative flex flex-col md:flex-row md:space-y-0 md:justify-between">
+          <div className="hidden md:block absolute top-[24px] left-[5%] right-[5%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          
           {steps.map((step, idx) => (
-            <div key={idx} className="flex md:flex-col md:items-center relative">
-              {/* Connector line - except for the last item */}
-              {idx !== steps.length - 1 && (
-                <div className="absolute left-[17px] top-[40px] bottom-[-20px] w-[2px] bg-border md:left-1/2 md:-translate-x-1/2" />
-              )}
+            <div key={idx} className="flex md:flex-col md:items-center relative z-10 w-full md:w-1/3">
               
-              <div className="flex md:flex-col md:items-center w-full">
+              <div className="flex md:flex-col items-start md:items-center w-full">
                 {/* Number Circle */}
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: idx * 0.15, duration: 0.4 }}
-                  className="w-[36px] h-[36px] rounded-full bg-primary text-white font-extrabold flex items-center justify-center flex-shrink-0 relative z-10"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: idx * 0.15, duration: 0.8, type: "spring" }}
+                  className="w-12 h-12 rounded-full border border-white/20 bg-black/80 backdrop-blur-md text-white font-semibold flex items-center justify-center flex-shrink-0 relative z-10 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                 >
-                  {idx + 1}
+                  <span className="text-xl">{idx + 1}</span>
                 </motion.div>
 
                 {/* Content */}
                 <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: (idx * 0.15) + 0.1, duration: 0.4 }}
-                  className="ml-6 md:ml-0 md:mt-6 md:text-center pb-12 w-full max-w-[320px]"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: (idx * 0.15) + 0.2, duration: 0.8 }}
+                  className="ml-6 md:ml-0 md:mt-8 md:text-center w-full"
                 >
-                  <div className="flex items-center gap-3 md:justify-center mb-2">
-                    <span className="text-primary flex items-center justify-center bg-primary/20 w-8 h-8 rounded-full">
-                      <step.icon className="w-4 h-4" />
+                  <div className="flex flex-col items-start md:items-center gap-3 mb-4">
+                    <span className="text-gray-300 w-10 h-10 rounded-2xl bg-[#111] border border-[#222] flex items-center justify-center shadow-inner">
+                      <step.icon strokeWidth={1.5} className="w-5 h-5 text-purple-400" />
                     </span>
-                    <h3 className="text-white font-bold text-[18px]">{step.title}</h3>
+                    <h3 className="text-white font-bold text-2xl tracking-tight">{step.title}</h3>
                   </div>
-                  <p className="text-primary-light text-[14px] leading-relaxed md:px-4">
+                  <p className="text-gray-400 text-lg leading-relaxed font-light md:px-2 max-w-[280px]">
                     {step.description}
                   </p>
                 </motion.div>

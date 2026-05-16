@@ -25,7 +25,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-[20px] bg-[#0F0A1F]/85 border-b border-purple">
+    <nav className="sticky top-0 z-50 backdrop-blur-2xl bg-black/70 border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -46,25 +46,25 @@ export default function Navbar() {
               <button
                 key={link.name}
                 onClick={() => handleScrollTo(link.id)}
-                className="text-primary-light hover:text-white transition-colors duration-200 font-medium text-base tracking-wide"
-              >
-                {link.name}
-              </button>
-            ))}
-            <button
-              onClick={() => handleScrollTo('download')}
-              className="bg-primary text-white font-bold py-2.5 px-5 rounded-[16px] shadow-cta hover:scale-[1.03] hover:bg-[#8B5CF6] transition-all tracking-wide"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium text-sm tracking-wide"
             >
-              Download Free
+              {link.name}
             </button>
-          </div>
+          ))}
+          <button
+            onClick={() => handleScrollTo('download')}
+            className="bg-white text-black font-semibold py-2 px-5 rounded-[20px] hover:bg-gray-200 transition-all tracking-wide text-sm"
+          >
+            Download Free
+          </button>
+        </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-primary-light hover:text-white"
-            >
+        {/* Mobile menu button */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white hover:text-gray-300"
+          >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -78,20 +78,20 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: '100vh' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden fixed inset-0 top-20 bg-[#0F0A1F] flex flex-col items-center pt-12 space-y-8 px-4"
+            className="md:hidden fixed inset-0 top-20 bg-black flex flex-col items-center pt-12 space-y-8 px-4"
           >
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => handleScrollTo(link.id)}
-                className="text-primary-light hover:text-white text-2xl font-medium tracking-wide"
+                className="text-gray-300 hover:text-white text-2xl font-medium tracking-wide"
               >
                 {link.name}
               </button>
             ))}
             <button
               onClick={() => handleScrollTo('download')}
-              className="mt-8 bg-primary text-white font-bold py-4 px-8 rounded-[16px] shadow-cta w-full max-w-sm text-xl tracking-wide"
+              className="mt-8 bg-white text-black font-extrabold py-4 px-8 rounded-full w-full max-w-sm text-xl tracking-wide"
             >
               Download Free
             </button>
