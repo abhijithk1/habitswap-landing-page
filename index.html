@@ -3,34 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Habit Swap — Replace Bad Habits With Good Ones</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="Habit Swap intercepts your urges and offers instant, contextual alternatives that rewire your brain over time. Available on iOS and Android.">
-    <!-- Open Graph tags for Link Preview -->
-    <meta property="og:site_name" content="Habit Swap">
-    <meta property="og:title" content="Habit Swap — Replace urges. Rewire your brain.">
-    <meta property="og:description" itemprop="description" content="Habit Swap intercepts your urges and offers instant, contextual alternatives that rewire your brain over time.">
-    <meta property="og:type" content="website">
-    <!-- Premium dark purple abstract image for preview -->
-    <meta property="og:image" itemprop="image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
-    <meta property="og:image:secure_url" itemprop="image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    
-    <!-- Twitter Card format -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Habit Swap — Replace urges. Rewire your brain.">
-    <meta name="twitter:description" content="Habit Swap intercepts your urges and offers instant, contextual alternatives that rewire your brain over time.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- ── Primary meta ── -->
+    <title>Habit Swap — Your brain is stuck in a loop. Let's fix that.</title>
+    <meta name="description" content="Habit Swap intercepts your urges the moment they hit — with science-backed alternatives that rewire your brain over time. Free on iOS & Android." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- ── Open Graph (WhatsApp, iMessage, Telegram, LinkedIn, Facebook) ── -->
+    <meta property="og:site_name" content="Habit Swap" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://habitswap.app/" />
+    <meta property="og:title" content="Habit Swap — Your brain is stuck in a loop." />
+    <meta property="og:description" content="Replace urges. Rewire your brain. One swap at a time. Free on iOS & Android." />
+    <!--
+      OG image: 1200×630, dark violet branded card.
+      Replace this URL with your own hosted og-image.png once you have it.
+      Ideal: a screenshot of the SWAP IT phone screen on a dark violet background
+      with "Habit Swap" wordmark — 1200×630px, hosted on your domain or Cloudinary.
+    -->
+    <meta property="og:image" content="https://habitswap.app/og-image.png" />
+    <meta property="og:image:secure_url" content="https://habitswap.app/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Habit Swap — Replace bad habits with good ones. Free app." />
+
+    <!-- ── Twitter / X Card ── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@habitswapapp" />
+    <meta name="twitter:title" content="Habit Swap — Your brain is stuck in a loop." />
+    <meta name="twitter:description" content="Replace urges. Rewire your brain. One swap at a time. Free on iOS & Android." />
+    <meta name="twitter:image" content="https://habitswap.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Habit Swap app — neuroscience-backed habit replacement" />
+
+    <!-- ── iOS / Apple specific ── -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Habit Swap" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- ── Theme colours ── -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-TileColor" content="#000000" />
+
+    <!-- ── Canonical ── -->
+    <link rel="canonical" href="https://habitswap.app/" />
+
+    <!-- ── Fonts: Syne (display) + Inter (body) ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Syne: ultra-geometric, distinctive — used for all headings.
+      Inter: clean, readable — used for body, UI copy, labels.
+    -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      /* Apply Syne to headings globally */
+      h1, h2, h3 {
+        font-family: 'Syne', sans-serif;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #000;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

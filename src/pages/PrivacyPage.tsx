@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 const privacyHtml = `
   <style>
@@ -60,13 +62,100 @@ export default function PrivacyPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+ 
   return (
-    <div className="max-w-[800px] mx-auto px-6 py-20 bg-white min-h-screen text-black rounded-lg my-10 relative z-10 w-full overflow-hidden">
-    <div
-      className="privacy-container"
-      dangerouslySetInnerHTML={{ __html: privacyHtml }}
-      />
+    <div className="min-h-screen bg-black text-white">
+ 
+      {/* Subtle violet bloom — same as site */}
+      <div className="fixed top-0 left-0 right-0 h-[50vh] pointer-events-none z-0"
+        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(88,28,135,0.20) 0%, transparent 70%)' }} />
+ 
+      <div className="max-w-[780px] mx-auto px-6 sm:px-8 py-16 relative z-10">
+ 
+        {/* Back link */}
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-purple-300/50 hover:text-purple-300/80 transition-colors duration-200 text-sm font-medium mb-12 group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200" />
+          Back to Habit Swap
+        </Link>
+ 
+        {/* Header */}
+        <div className="mb-12 pb-10 border-b border-white/[0.06]">
+          <p className="text-purple-400/50 text-[11px] font-bold tracking-[0.3em] uppercase mb-4">Legal</p>
+          <h1 className="text-white leading-tight tracking-tighter mb-3"
+            style={{ fontSize: 'clamp(2.2rem,5vw,3.5rem)', fontFamily: "'Syne', sans-serif", fontWeight: 800 }}>
+            Privacy Policy
+          </h1>
+          <p className="text-purple-200/30 text-[15px] font-light">
+            Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        </div>
+ 
+        {/* Termly content — styled to match the site */}
+        <div
+          className="privacy-body"
+          dangerouslySetInnerHTML={{ __html: privacyHtml }}
+        />
+ 
+      </div>
+ 
+      {/* Scoped styles — override Termly defaults to match dark site theme */}
+      <style>{`
+        .privacy-body {
+          color: rgba(196, 181, 253, 0.45);
+          font-size: 15px;
+          line-height: 1.8;
+          font-family: 'Inter', sans-serif;
+        }
+        .privacy-body h1,
+        .privacy-body h2,
+        .privacy-body h3,
+        .privacy-body h4 {
+          font-family: 'Syne', sans-serif;
+          font-weight: 800;
+          color: rgba(255, 255, 255, 0.85);
+          margin-top: 2.5rem;
+          margin-bottom: 0.75rem;
+          tracking: tight;
+        }
+        .privacy-body h2 { font-size: 1.35rem; }
+        .privacy-body h3 { font-size: 1.1rem; }
+        .privacy-body p  { margin-bottom: 1rem; }
+        .privacy-body a  {
+          color: rgba(167, 139, 250, 0.75);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .privacy-body a:hover { color: rgba(167, 139, 250, 1); }
+        .privacy-body ul,
+        .privacy-body ol {
+          padding-left: 1.5rem;
+          margin-bottom: 1rem;
+        }
+        .privacy-body li { margin-bottom: 0.4rem; }
+        .privacy-body strong { color: rgba(255,255,255,0.65); font-weight: 600; }
+        .privacy-body table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1.5rem;
+          font-size: 14px;
+        }
+        .privacy-body th,
+        .privacy-body td {
+          padding: 0.6rem 0.9rem;
+          border: 1px solid rgba(255,255,255,0.06);
+          text-align: left;
+        }
+        .privacy-body th {
+          background: rgba(88,28,135,0.12);
+          color: rgba(255,255,255,0.55);
+          font-weight: 600;
+        }
+        /* Hide any Termly branding if present */
+        .privacy-body [class*="termly-"] { display: none !important; }
+      `}</style>
     </div>
   );
 }

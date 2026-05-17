@@ -125,11 +125,19 @@ const Screen3 = ({ opacity }: { opacity: MotionValue<number> }) => {
       </div>
 
       {/* ── Row 3: centered progress ring ── */}
-      <div className="relative w-[150px] h-[150px] mx-auto flex flex-col items-center justify-center mb-4 relative z-10">
-        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 150 150">
-          <circle cx="75" cy="75" r="64" stroke="#1A0F30" strokeWidth="10" fill="none" />
-          <circle cx="75" cy="75" r="64" stroke="url(#dashGrad)" strokeWidth="10"
-            strokeDasharray="402" strokeDashoffset="376"
+      {/*
+        Ring math:
+        Container: 160×160px
+        SVG viewBox: 160×160, cx/cy=80, r=68, strokeWidth=9
+        Inner clear radius = 68 - 4.5 = 63.5px → inner diameter ≈ 127px
+        Text stack: ~28px number + 4px gap + ~22px label = ~54px total
+        54px fits well inside 127px with ~36px breathing room each side ✓
+      */}
+      <div className="relative w-[160px] h-[160px] mx-auto flex flex-col items-center justify-center gap-1 mb-4 relative z-10">
+        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" stroke="#1A0F30" strokeWidth="9" fill="none" />
+          <circle cx="80" cy="80" r="68" stroke="url(#dashGrad)" strokeWidth="9"
+            strokeDasharray="427" strokeDashoffset="400"
             strokeLinecap="round" fill="none"
             style={{ filter: 'drop-shadow(0 0 10px rgba(168,85,247,0.6))' }} />
           <defs>
@@ -139,9 +147,10 @@ const Screen3 = ({ opacity }: { opacity: MotionValue<number> }) => {
             </linearGradient>
           </defs>
         </svg>
-        <span className="text-purple-400 font-black text-[38px] tracking-tighter leading-none mt-1">6.6%</span>
-        <span className="text-purple-200/60 text-[10px] text-center leading-[1.2] max-w-[80px] font-medium tracking-wide mt-0.5">
-          neural pathways rewired
+        {/* No margin offsets — gap on parent handles spacing cleanly */}
+        <span className="text-purple-400 font-black text-[28px] tracking-tighter leading-none">6.6%</span>
+        <span className="text-purple-200/55 text-[9px] text-center leading-[1.3] max-w-[72px] font-medium tracking-wide">
+          neural pathways<br />rewired
         </span>
       </div>
 
