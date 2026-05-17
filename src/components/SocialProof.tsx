@@ -1,62 +1,63 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 
-const SocialProof = () => {
-  const quotes = [
-    { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "Abhijith K" },
-    { text: "The science behind this is legit. My urges are way weaker.", author: "Akshay N Shaju" },
-    { text: "Best dopamine detox tool out there. So simple.", author: "Shihabudeen" },
-    { text: "The 2-hour grace period actually kept me from giving up entirely.", author: "Midhun GG" },
-    { text: "Replaced my bad habits so smoothly, highly recommend it.", author: "Donal Joyce" },
-    { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "Abhijith K" }, // Duplicated for smooth marquee loop
-  ];
+const quotes = [
+  { text: "Finally broke my doomscrolling habit. 3 weeks streak!", author: "Abhijith K", habit: "Doomscrolling" },
+  { text: "The science behind this is legit. My urges are way weaker now.", author: "Akshay N Shaju", habit: "Social media" },
+  { text: "Best dopamine detox tool out there. So beautifully simple.", author: "Shihabudeen", habit: "Snacking" },
+  { text: "The 2-hour grace period kept me from giving up entirely.", author: "Midhun GG", habit: "Late nights" },
+  { text: "Replaced my bad habits so smoothly. Highly recommend it.", author: "Donal Joyce", habit: "Procrastination" },
+  { text: "I've tried everything. This is the first thing that actually stuck.", author: "Riya Menon", habit: "Overthinking" },
+];
 
-  return (
-    <section className="py-24 overflow-hidden bg-black relative border-y border-white/5">
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10 hidden sm:block pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10 hidden sm:block pointer-events-none" />
-      
-      <div className="relative flex flex-col md:flex-row overflow-hidden w-full group">
-        
-        {/* Desktop Marquee */}
-        <div className="hidden md:flex whitespace-nowrap animate-marquee">
-          {quotes.map((quote, idx) => (
-            <div key={idx} className="inline-block mx-4 min-w-[400px]">
-              <div className="bg-[#0A0A0B] border border-[#2A2A2E] rounded-3xl p-8 flex flex-col h-full shadow-[0_4px_24px_rgba(0,0,0,0.5)] transform transition-transform duration-500 hover:scale-[1.02] hover:border-white/10 group-hover:opacity-75 hover:!opacity-100 cursor-pointer">
-                <div className="flex gap-1 text-white mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-current drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
-                  ))}
-                </div>
-                <p className="text-gray-300 text-lg mb-8 whitespace-normal font-light leading-relaxed">"{quote.text}"</p>
-                <div className="mt-auto">
-                  <span className="text-white font-semibold tracking-wide">— {quote.author}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+const allQuotes = [...quotes, ...quotes];
 
-        {/* Mobile Grid */}
-        <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 w-full">
-          {quotes.slice(0, 4).map((quote, idx) => (
-             <div key={idx} className="bg-[#0A0A0B] border border-[#2A2A2E] rounded-3xl p-6 flex flex-col shadow-lg">
-             <div className="flex gap-1 text-white mb-4">
-               {[...Array(5)].map((_, i) => (
-                 <Star key={i} className="w-4 h-4 fill-current drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
-               ))}
-             </div>
-             <p className="text-gray-300 text-base mb-6 leading-relaxed font-light">"{quote.text}"</p>
-             <div className="mt-auto">
-               <span className="text-white font-semibold">— {quote.author}</span>
-             </div>
-           </div>
-          ))}
-        </div>
-
+const QuoteCard = ({ quote }: { quote: typeof quotes[0] }) => (
+  <div className="inline-flex flex-col mx-3 w-[340px] bg-[#0a0a0c] border border-white/[0.06] rounded-2xl p-6 flex-shrink-0 group hover:border-purple-500/20 hover:bg-[#0d0a18] transition-all duration-500">
+    <div className="flex items-center justify-between mb-5">
+      <div className="flex gap-1">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+        ))}
       </div>
-    </section>
-  );
-};
+      <span className="text-purple-400/50 text-[10px] font-bold tracking-widest uppercase border border-purple-500/15 rounded-full px-2.5 py-0.5">
+        {quote.habit}
+      </span>
+    </div>
+    <p className="text-gray-400 text-[15px] leading-relaxed font-light flex-1 mb-5 group-hover:text-gray-300 transition-colors duration-300">
+      "{quote.text}"
+    </p>
+    <div className="flex items-center gap-2.5">
+      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-700 to-violet-900 flex items-center justify-center flex-shrink-0">
+        <span className="text-white text-[11px] font-black">{quote.author[0]}</span>
+      </div>
+      <span className="text-white/60 text-sm font-semibold">{quote.author}</span>
+    </div>
+  </div>
+);
+
+const SocialProof = () => (
+  <section className="py-20 overflow-hidden bg-black relative border-y border-white/[0.04]">
+    <div className="absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+    <div className="absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+    <div className="text-center mb-10 relative z-10">
+      <p className="text-purple-400/50 text-[11px] font-bold tracking-[0.3em] uppercase">What early users say</p>
+    </div>
+
+    <div className="flex whitespace-nowrap" style={{ animation: 'marquee 42s linear infinite' }}>
+      {allQuotes.map((q, i) => (
+        <QuoteCard key={i} quote={q} />
+      ))}
+    </div>
+
+    <style>{`
+      @keyframes marquee {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+    `}</style>
+  </section>
+);
 
 export default SocialProof;

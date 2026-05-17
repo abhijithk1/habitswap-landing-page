@@ -3,54 +3,72 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
-          
-          {/* Brand */}
-          <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" className="w-5 h-5">
+    <footer className="relative bg-black overflow-hidden">
+      {/* Top rule */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+
+      {/* Subtle violet bloom */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(88,28,135,0.14) 0%, transparent 70%)' }} />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-16">
+
+          {/* Brand column */}
+          <div className="lg:col-span-2 space-y-5">
+            <Link to="/" className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 to-violet-700 flex items-center justify-center shadow-[0_0_12px_rgba(139,92,246,0.3)]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-4 h-4">
                   <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clipRule="evenodd" />
                 </svg>
               </div>
-              <span className="text-white font-extrabold text-xl tracking-tight">Habit Swap</span>
+              <span className="text-white font-extrabold text-[17px] tracking-tight">Habit Swap</span>
             </Link>
-            <p className="text-gray-400 text-base max-w-xs font-light">
-              Replace bad habits<br />
-              with good ones.
+            <p className="text-purple-200/30 text-base font-light leading-relaxed max-w-xs">
+              Intercept urges. Build new pathways. Reclaim your attention — one swap at a time.
             </p>
-            <p className="text-gray-600 text-sm mt-8 pt-4">
-              © {new Date().getFullYear()} Habit Swap.
+            <p className="text-white/15 text-sm pt-2">
+              © {new Date().getFullYear()} Habit Swap. All rights reserved.
             </p>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-col space-y-3">
-            <a href={`${import.meta.env.BASE_URL}#features`} className="text-gray-400 hover:text-white transition-colors font-medium">Features</a>
-            <a href={`${import.meta.env.BASE_URL}#how-it-works`} className="text-gray-400 hover:text-white transition-colors font-medium">How It Works</a>
-            <a href={`${import.meta.env.BASE_URL}#download`} className="text-gray-400 hover:text-white transition-colors font-medium">Download</a>
+          {/* Nav links */}
+          <div className="space-y-4">
+            <h4 className="text-white/40 text-[10px] font-bold tracking-[0.25em] uppercase mb-5">Product</h4>
+            {[
+              { label: 'Features', href: '#features' },
+              { label: 'How It Works', href: '#how-it-works' },
+              { label: 'Download', href: '#download' },
+            ].map((l) => (
+              <a key={l.label} href={`${import.meta.env.BASE_URL}${l.href}`}
+                className="block text-purple-200/40 hover:text-white transition-colors duration-200 font-medium text-sm">
+                {l.label}
+              </a>
+            ))}
           </div>
 
-          {/* Legal */}
-          <div className="flex flex-col space-y-3">
-            <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors font-medium hover:underline">Privacy Policy  →</Link>
-            <Link to="#" className="text-gray-400 hover:text-white transition-colors font-medium">Terms of Service</Link>
-          </div>
-
-          {/* Contact */}
-          <div className="flex flex-col space-y-3">
-            <h3 className="text-white font-semibold">Contact Us</h3>
-            <p className="text-gray-500 text-sm pb-1 font-light">Have any questions? Send us an email.</p>
-            <a href="mailto:habitswap.app@gmail.com" className="text-gray-400 hover:text-white transition-colors font-medium">habitswap.app@gmail.com</a>
+          {/* Legal + contact */}
+          <div className="space-y-4">
+            <h4 className="text-white/40 text-[10px] font-bold tracking-[0.25em] uppercase mb-5">Legal & Contact</h4>
+            <Link to="/privacy" className="block text-purple-200/40 hover:text-white transition-colors duration-200 font-medium text-sm">
+              Privacy Policy
+            </Link>
+            <a href="#" className="block text-purple-200/40 hover:text-white transition-colors duration-200 font-medium text-sm">
+              Terms of Service
+            </a>
+            <a href="mailto:habitswap.app@gmail.com" className="block text-purple-200/40 hover:text-white transition-colors duration-200 font-medium text-sm mt-6">
+              habitswap.app@gmail.com
+            </a>
           </div>
 
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/5 text-center text-gray-500 text-sm">
-          Made with precision.
+        {/* Bottom bar */}
+        <div className="border-t border-white/[0.04] pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-white/12 text-sm">Made with precision.</p>
+          <p className="text-white/12 text-sm">Built on neuroscience.</p>
         </div>
+
       </div>
     </footer>
   );

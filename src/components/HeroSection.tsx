@@ -1,94 +1,175 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Star, Flame, Brain } from 'lucide-react';
+import { Star } from 'lucide-react';
+
+// Animated grain overlay via canvas — gives the hero a film-like texture
+const GrainOverlay = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    let animId: number;
+    const draw = () => {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      const imageData = ctx.createImageData(canvas.width, canvas.height);
+      for (let i = 0; i < imageData.data.length; i += 4) {
+        const v = Math.random() * 255;
+        imageData.data[i]     = v;
+        imageData.data[i + 1] = v;
+        imageData.data[i + 2] = v;
+        imageData.data[i + 3] = 18; // very subtle
+      }
+      ctx.putImageData(imageData, 0, 0);
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+    return () => cancelAnimationFrame(animId);
+  }, []);
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-10 opacity-40" />;
+};
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center pt-20 pb-24 overflow-hidden bg-black text-white">
-      {/* Background Gradient & Animated Blobs - Deep Cinematic Look */}
-      <div 
-        className="absolute inset-0 pointer-events-none" 
-        style={{ background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30,10,60,0.8) 0%, transparent 100%)' }}
-      />
-      <div className="absolute top-[30%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] bg-primary/20 blur-[140px] rounded-full pointer-events-none" />
+    <section className="relative min-h-[95vh] flex flex-col justify-center pt-24 pb-28 overflow-hidden bg-black text-white">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex flex-col items-center text-center">
-        
-        {/* Tiny pill label */}
+      {/* ── Layered background ── */}
+      {/* Deep violet mesh — the signature colour of the app */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0" style={{
+          background: 'radial-gradient(ellipse 90% 60% at 50% -10%, rgba(88,28,135,0.45) 0%, transparent 70%)',
+        }} />
+        {/* secondary bloom bottom-right */}
+        <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] max-w-[700px] max-h-[700px]"
+          style={{ background: 'radial-gradient(circle, rgba(109,40,217,0.12) 0%, transparent 70%)' }} />
+        {/* noise grain */}
+        <GrainOverlay />
+      </div>
+
+      {/* ── Decorative rule lines — editorial feel ── */}
+      <div className="absolute left-0 right-0 top-[38%] h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent pointer-events-none z-0" />
+      <div className="absolute left-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.03] to-transparent pointer-events-none z-0 hidden lg:block" />
+      <div className="absolute right-[8%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.03] to-transparent pointer-events-none z-0 hidden lg:block" />
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-20 flex flex-col items-center text-center">
+
+        {/* Status pill */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-10 border border-purple-500/20 bg-purple-950/30 backdrop-blur-md"
         >
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-gray-300 text-xs font-semibold tracking-widest uppercase">Now Available</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+          </span>
+          <span className="text-purple-200/80 text-xs font-semibold tracking-[0.18em] uppercase">
+            Now Available on iOS & Android
+          </span>
         </motion.div>
 
-        {/* Apple-style ultra large headline */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ delay: 0.1, duration: 1, ease: "circOut" }}
-          className="text-white font-black text-[clamp(3.5rem,10vw,8rem)] leading-[0.95] tracking-tighter mb-8 max-w-5xl"
+        {/* Headline — large, tight, dramatic */}
+        <motion.h1
+          initial={{ opacity: 0, y: 28, filter: 'blur(12px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ delay: 0.1, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-black leading-[0.92] tracking-tighter mb-7 max-w-5xl"
+          style={{ fontSize: 'clamp(3.8rem,10.5vw,9rem)' }}
         >
-          Master your mind.<br />
-          <span className="relative inline-block mt-2">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-white to-gray-500 [text-shadow:0_0_80px_rgba(168,85,247,0.3)]">Rewire your brain.</span>
+          <span className="text-white">Master your</span>
+          <br />
+          <span
+            className="relative inline-block"
+            style={{
+              background: 'linear-gradient(135deg, #e9d5ff 0%, #ffffff 40%, #a78bfa 70%, #7c3aed 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            urges.
           </span>
         </motion.h1>
 
-        {/* Sub-headline */}
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+        {/* Sub */}
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
-          className="text-gray-400 text-xl sm:text-2xl leading-relaxed mb-12 max-w-3xl font-light tracking-wide"
+          transition={{ delay: 0.28, duration: 1, ease: 'easeOut' }}
+          className="text-purple-200/50 text-xl sm:text-2xl leading-relaxed mb-14 max-w-2xl font-light tracking-wide"
         >
-          Habit Swap intercepts your urges with neuroscience-backed alternatives. Break the cycle, form new pathways, and reclaim your time.
+          Habit Swap intercepts your urges with neuroscience-backed
+          alternatives. Break the cycle — one swap at a time.
         </motion.p>
-        
-        {/* Action Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+        {/* CTA row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center gap-8 mb-16"
+          transition={{ delay: 0.45, duration: 0.8, ease: 'easeOut' }}
+          className="flex flex-col sm:flex-row items-center gap-4 mb-20"
         >
-          <button 
-            onClick={() => {
-              const element = document.getElementById('download');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="relative group bg-white text-black font-extrabold py-5 px-10 rounded-[28px] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(255,255,255,0.3)]"
+          {/* Primary */}
+          <button
+            onClick={() => document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' })}
+            className="group relative overflow-hidden bg-white text-black font-extrabold py-4 px-9 rounded-[26px] text-lg tracking-wide transition-transform duration-300 hover:scale-[1.03]"
           >
-            <span className="relative text-xl tracking-wide z-10 block">Start Rewiring</span>
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-100 to-gray-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
+            {/* shimmer sweep */}
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
+            <span className="relative z-10">Start Rewiring — Free</span>
+          </button>
+
+          {/* Ghost */}
+          <button
+            onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })}
+            className="flex items-center gap-2 text-purple-300/60 font-medium text-base hover:text-purple-200/90 transition-colors duration-200 tracking-wide"
+          >
+            See how it works
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </button>
         </motion.div>
 
-        {/* Social Proof Row inline */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="flex flex-col sm:flex-row items-center gap-6 mt-8 p-6 rounded-full glass-card border border-white/5"
+        {/* Social proof card */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.9 }}
+          className="flex flex-col sm:flex-row items-center gap-5 px-7 py-5 rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm"
         >
-          <div className="flex items-center gap-[-15px]">
-              <img src="https://i.pravatar.cc/100?img=1" className="w-12 h-12 rounded-full border-2 border-black object-cover relative z-30" alt="User" />
-              <img src="https://i.pravatar.cc/100?img=5" className="w-12 h-12 rounded-full border-2 border-black object-cover relative z-20 -ml-4" alt="User" />
-              <img src="https://i.pravatar.cc/100?img=3" className="w-12 h-12 rounded-full border-2 border-black object-cover relative z-10 -ml-4" alt="User" />
+          {/* Avatars */}
+          <div className="flex">
+            {[1, 5, 3, 8].map((n, i) => (
+              <img
+                key={n}
+                src={`https://i.pravatar.cc/80?img=${n}`}
+                className="w-10 h-10 rounded-full border-2 border-black object-cover"
+                style={{ marginLeft: i === 0 ? 0 : '-10px', zIndex: 4 - i }}
+                alt=""
+              />
+            ))}
           </div>
-          <div className="h-10 w-px bg-white/10 hidden sm:block" />
-          <div className="text-left flex flex-col items-center sm:items-start">
-            <span className="flex items-center gap-1.5 text-white font-bold text-lg"><Star className="w-5 h-5 text-yellow-400 fill-current" /> 4.9/5</span>
-            <span className="text-gray-500 text-sm font-medium tracking-wide">from early beta users</span>
+          <div className="h-8 w-px bg-white/10 hidden sm:block" />
+          <div className="flex flex-col items-center sm:items-start gap-0.5">
+            <div className="flex items-center gap-1.5">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              ))}
+              <span className="text-white font-bold text-sm ml-1">4.9</span>
+            </div>
+            <span className="text-purple-300/40 text-xs font-medium tracking-wide">
+              Loved by 2,000+ early users
+            </span>
           </div>
         </motion.div>
 
       </div>
+
+      {/* Bottom fade into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none z-10" />
     </section>
   );
 };

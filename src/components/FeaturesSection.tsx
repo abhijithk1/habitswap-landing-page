@@ -2,93 +2,135 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { MousePointerClick, Brain, ShieldAlert, Award, ActivitySquare, Share2 } from 'lucide-react';
 
-const FeaturesSection = () => {
-  const features = [
-    {
-      icon: MousePointerClick,
-      title: "Instant Swap Button",
-      description: "Large, pulsing trigger. No friction — just tap and swap instantly."
-    },
-    {
-      icon: Brain,
-      title: "Smart Swap Selection",
-      description: "Context-aware tasks matched to your urge type, time, and location."
-    },
-    {
-      icon: ShieldAlert,
-      title: "Streak Protector",
-      description: "2-hour grace period. Protect your progress without guilt or shame."
-    },
-    {
-      icon: Award,
-      title: "Streak Milestones",
-      description: "Animated celebrations at 3, 7, 14, and 30-day streak achievements."
-    },
-    {
-      icon: ActivitySquare,
-      title: "Neural Dashboard",
-      description: "7-day heatmap, danger window insights, and interactive progress."
-    },
-    {
-      icon: Share2,
-      title: "Social Accountability",
-      description: "Share progress cards with friends and stay on track together."
-    }
-  ];
+const features = [
+  {
+    icon: MousePointerClick,
+    title: "Instant Swap Button",
+    description: "One large, pulsing trigger. No menus, no friction — tap and your brain starts the redirect immediately.",
+    accent: "from-purple-500 to-violet-600",
+    glow: "rgba(139,92,246,0.15)",
+  },
+  {
+    icon: Brain,
+    title: "Smart Swap Selection",
+    description: "Context-aware tasks matched to your urge type, the time of day, and your location. Always the right intervention.",
+    accent: "from-violet-500 to-purple-700",
+    glow: "rgba(124,58,237,0.15)",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Streak Protector",
+    description: "A 2-hour grace period so one bad moment doesn't erase your progress. Protect your streak without shame.",
+    accent: "from-blue-500 to-violet-600",
+    glow: "rgba(99,102,241,0.15)",
+  },
+  {
+    icon: Award,
+    title: "Streak Milestones",
+    description: "Animated celebrations at 3, 7, 14, and 30 days. Every milestone wires dopamine to your new habits.",
+    accent: "from-purple-400 to-pink-600",
+    glow: "rgba(168,85,247,0.15)",
+  },
+  {
+    icon: ActivitySquare,
+    title: "Neural Dashboard",
+    description: "7-day heatmap, danger window predictions, top urge patterns — see your neuroplasticity in real time.",
+    accent: "from-teal-500 to-emerald-600",
+    glow: "rgba(20,184,166,0.12)",
+  },
+  {
+    icon: Share2,
+    title: "Social Accountability",
+    description: "Share your progress cards with anyone. Public commitment accelerates habit formation by up to 65%.",
+    accent: "from-emerald-400 to-teal-600",
+    glow: "rgba(52,211,153,0.12)",
+  },
+];
 
-  return (
-    <section id="features" className="py-32 relative overflow-hidden bg-[#050505]">
-      {/* Background Ambience */}
-      <div className="absolute top-[20%] left-[20%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600/5 rounded-full blur-[150px] pointer-events-none -z-10" />
-      <div className="absolute bottom-[20%] right-[10%] w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none -z-10" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="text-center mb-24 space-y-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-white font-extrabold text-[clamp(3rem,6vw,5rem)] tracking-tighter leading-none mb-2"
-          >
-            Rewire by <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-gray-300 to-gray-500">design.</span>
-          </motion.h2>
-          <motion.p
+const FeaturesSection = () => (
+  <section id="features" className="py-36 relative overflow-hidden bg-black">
+
+    {/* Background — subtle violet cloud top-left, echoes hero */}
+    <div className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none"
+      style={{ background: 'radial-gradient(circle at 0% 0%, rgba(88,28,135,0.18) 0%, transparent 70%)' }} />
+    <div className="absolute bottom-0 right-0 w-[500px] h-[500px] pointer-events-none"
+      style={{ background: 'radial-gradient(circle at 100% 100%, rgba(109,40,217,0.10) 0%, transparent 70%)' }} />
+
+    {/* Horizontal rule — editorial separator */}
+    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
+
+    <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+
+      {/* Section label + heading */}
+      <div className="mb-20">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-purple-400/60 text-[11px] font-bold tracking-[0.3em] uppercase mb-5"
+        >
+          Built different
+        </motion.p>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-400 text-xl max-w-2xl mx-auto font-light tracking-wide"
+            transition={{ delay: 0.05 }}
+            className="text-white font-black tracking-tighter leading-[0.95]"
+            style={{ fontSize: 'clamp(2.8rem,5.5vw,5rem)' }}
           >
-            Every feature is meticulously crafted to seamlessly intercept your patterns and build healthier neural pathways.
+            Rewired<br />
+            <span className="text-white/25">by design.</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.12 }}
+            className="text-purple-200/40 text-lg font-light leading-relaxed max-w-sm lg:text-right"
+          >
+            Every feature is engineered to intercept patterns and build healthier neural pathways without friction.
           </motion.p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1, duration: 0.8, ease: "easeOut" }}
-              className="group bg-[#0A0A0B] rounded-[32px] p-10 border border-[#2A2A2E] transition-all duration-500 hover:-translate-y-2 hover:border-purple-500/30 hover:shadow-[0_20px_60px_rgba(124,58,237,0.1)] relative overflow-hidden"
-            >
-              {/* Hover sweep effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-              
-              <div className="w-16 h-16 rounded-[20px] bg-black border border-white/5 flex items-center justify-center text-gray-300 mb-8 shadow-inner group-hover:scale-110 group-hover:text-purple-400 transition-all duration-500">
-                <feature.icon className="w-8 h-8" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-white font-bold text-2xl mb-4 tracking-tight">{feature.title}</h3>
-              <p className="text-gray-400 leading-relaxed font-light text-lg">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
       </div>
-    </section>
-  );
-};
+
+      {/* Feature grid — alternating large + small cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {features.map((f, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ delay: i * 0.07, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative bg-[#080810] border border-white/[0.05] rounded-2xl p-8 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.10]"
+            style={{ boxShadow: `0 0 0 0 ${f.glow}` }}
+          >
+            {/* Hover glow */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-2xl"
+              style={{ background: `radial-gradient(circle at 30% 30%, ${f.glow} 0%, transparent 60%)` }}
+            />
+
+            {/* Icon */}
+            <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${f.accent} p-px mb-7 flex-shrink-0`}>
+              <div className="w-full h-full rounded-xl bg-[#080810] flex items-center justify-center group-hover:bg-transparent transition-colors duration-500">
+                <f.icon className="w-5 h-5 text-white/70 group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
+              </div>
+            </div>
+
+            <h3 className="text-white font-bold text-xl mb-3 tracking-tight">{f.title}</h3>
+            <p className="text-purple-200/35 leading-relaxed font-light text-[15px]">{f.description}</p>
+
+            {/* Bottom accent line */}
+            <div className={`absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r ${f.accent} opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
+          </motion.div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+);
 
 export default FeaturesSection;

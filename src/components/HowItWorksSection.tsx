@@ -2,85 +2,127 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Zap, Target, BrainCircuit } from 'lucide-react';
 
-const HowItWorksSection = () => {
-  const steps = [
-    {
-      icon: Zap,
-      title: "Feel the urge",
-      description: "Hit the big button the moment you feel the pull. No thinking required."
-    },
-    {
-      icon: Target,
-      title: "Do the swap task",
-      description: "Specific activities scientifically designed to interrupt and replace."
-    },
-    {
-      icon: BrainCircuit,
-      title: "Watch your brain rewire",
-      description: "Track your progress as new neural pathways form before your eyes."
-    }
-  ];
+const steps = [
+  {
+    number: '01',
+    icon: Zap,
+    title: "Feel the urge",
+    body: "Hit the big button the moment you feel the pull. No thinking, no friction — just a single tap.",
+    color: 'text-purple-400',
+    border: 'border-purple-500/20',
+    bg: 'bg-purple-500/8',
+    glow: 'rgba(168,85,247,0.2)',
+  },
+  {
+    number: '02',
+    icon: Target,
+    title: "Do the swap",
+    body: "A specific, science-backed task interrupts the urge pathway and redirects your dopamine response immediately.",
+    color: 'text-violet-400',
+    border: 'border-violet-500/20',
+    bg: 'bg-violet-500/8',
+    glow: 'rgba(124,58,237,0.2)',
+  },
+  {
+    number: '03',
+    icon: BrainCircuit,
+    title: "Rewire your brain",
+    body: "Repeat builds new neural pathways. Track your progress as the old urge loses its grip — permanently.",
+    color: 'text-emerald-400',
+    border: 'border-emerald-500/20',
+    bg: 'bg-emerald-500/8',
+    glow: 'rgba(52,211,153,0.15)',
+  },
+];
 
-  return (
-    <section id="how-it-works" className="py-32 bg-black relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050505] to-black z-0" />
-      
-      <div className="max-w-[800px] mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-24 space-y-4">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-white font-black text-[clamp(2.5rem,5vw,5rem)] tracking-tighter leading-none"
-          >
-            Three steps.<br />
-            <span className="text-gray-500">Perfectly simple.</span>
-          </motion.h2>
-        </div>
+const HowItWorksSection = () => (
+  <section id="how-it-works" className="relative py-36 bg-black overflow-hidden">
 
-        <div className="space-y-12 relative flex flex-col md:flex-row md:space-y-0 md:justify-between">
-          <div className="hidden md:block absolute top-[24px] left-[5%] right-[5%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          
-          {steps.map((step, idx) => (
-            <div key={idx} className="flex md:flex-col md:items-center relative z-10 w-full md:w-1/3">
-              
-              <div className="flex md:flex-col items-start md:items-center w-full">
-                {/* Number Circle */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: idx * 0.15, duration: 0.8, type: "spring" }}
-                  className="w-12 h-12 rounded-full border border-white/20 bg-black/80 backdrop-blur-md text-white font-semibold flex items-center justify-center flex-shrink-0 relative z-10 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
-                >
-                  <span className="text-xl">{idx + 1}</span>
-                </motion.div>
+    {/* Horizontal rule */}
+    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
 
-                {/* Content */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: (idx * 0.15) + 0.2, duration: 0.8 }}
-                  className="ml-6 md:ml-0 md:mt-8 md:text-center w-full"
-                >
-                  <div className="flex flex-col items-start md:items-center gap-3 mb-4">
-                    <span className="text-gray-300 w-10 h-10 rounded-2xl bg-[#111] border border-[#222] flex items-center justify-center shadow-inner">
-                      <step.icon strokeWidth={1.5} className="w-5 h-5 text-purple-400" />
-                    </span>
-                    <h3 className="text-white font-bold text-2xl tracking-tight">{step.title}</h3>
-                  </div>
-                  <p className="text-gray-400 text-lg leading-relaxed font-light md:px-2 max-w-[280px]">
-                    {step.description}
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-          ))}
-        </div>
+    {/* Background tone */}
+    <div className="absolute inset-0 pointer-events-none"
+      style={{ background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(88,28,135,0.08) 0%, transparent 70%)' }} />
+
+    <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+
+      {/* Heading */}
+      <div className="text-center mb-24">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-purple-400/55 text-[11px] font-bold tracking-[0.3em] uppercase mb-5"
+        >
+          The process
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.05 }}
+          className="text-white font-black tracking-tighter leading-[0.94]"
+          style={{ fontSize: 'clamp(2.8rem,5.5vw,5rem)' }}
+        >
+          Three steps.<br />
+          <span className="text-white/20">Perfectly simple.</span>
+        </motion.h2>
       </div>
-    </section>
-  );
-};
+
+      {/* Steps — horizontal on desktop, vertical on mobile */}
+      <div className="relative flex flex-col lg:flex-row gap-6 lg:gap-4">
+
+        {/* Connector line desktop */}
+        <div className="hidden lg:block absolute top-[52px] left-[calc(16.67%+1rem)] right-[calc(16.67%+1rem)] h-px"
+          style={{ background: 'linear-gradient(90deg, rgba(139,92,246,0.3), rgba(52,211,153,0.3))' }} />
+
+        {steps.map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex-1 flex flex-col lg:items-center group"
+          >
+            {/* Step node */}
+            <div className="flex lg:flex-col lg:items-center gap-5 lg:gap-0 mb-6 lg:mb-8">
+              <div
+                className={`relative w-[52px] h-[52px] rounded-2xl ${step.border} border flex items-center justify-center flex-shrink-0 transition-all duration-500 group-hover:scale-105`}
+                style={{ background: `radial-gradient(circle, ${step.glow} 0%, transparent 70%)` }}
+              >
+                <step.icon className={`w-5 h-5 ${step.color}`} strokeWidth={1.5} />
+                {/* connector dot */}
+                <div className={`hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full border ${step.border} bg-black`} style={{ display: i === 2 ? 'none' : undefined }} />
+              </div>
+              {/* Number — big editorial accent */}
+              <span className="text-white/[0.04] font-black text-[80px] leading-none tracking-tighter select-none lg:hidden">
+                {step.number}
+              </span>
+            </div>
+
+            {/* Big number for desktop, sits behind text */}
+            <div className="hidden lg:block lg:text-center mb-3">
+              <span className="text-white/[0.04] font-black text-[72px] leading-none tracking-tighter select-none">
+                {step.number}
+              </span>
+            </div>
+
+            <div className="lg:text-center">
+              <h3 className={`text-white font-bold text-xl mb-3 tracking-tight ${step.color.replace('text-', 'decoration-')}`}>
+                {step.title}
+              </h3>
+              <p className="text-purple-200/35 font-light leading-relaxed text-[15px] max-w-[280px] lg:mx-auto">
+                {step.body}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+);
 
 export default HowItWorksSection;
