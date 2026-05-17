@@ -89,99 +89,119 @@ const Screen2 = ({ opacity, buttonScale }: { opacity: MotionValue<number>; butto
   </motion.div>
 );
 
-// ─── Screen 3: Dashboard (with Top Urges) ─────────────────────────────────────
+// ─── Screen 3: Dashboard — matches reference layout exactly ──────────────────
 const Screen3 = ({ opacity }: { opacity: MotionValue<number> }) => {
   const urges = [
     { label: 'Doomscrolling', pct: 78, color: '#A855F7' },
     { label: 'Snacking',      pct: 54, color: '#7C3AED' },
+    { label: 'Procrastinating', pct: 41, color: '#6D28D9' },
+  ];
+  const days = [
+    {d:'T',v:null},{d:'F',v:null},{d:'S',v:null},{d:'S',v:null},
+    {d:'M',v:4},{d:'T',v:2},{d:'W',v:4},
   ];
 
   return (
-    <motion.div style={{ opacity }} className="absolute inset-0 bg-[#060310] flex flex-col pt-12 px-5 pb-6 overflow-hidden">
-      {/* Background glow for depth */}
-      <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-purple-600/15 rounded-full blur-[80px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-emerald-600/10 rounded-full blur-[80px] pointer-events-none" />
+    <motion.div style={{ opacity }} className="absolute inset-0 bg-[#060310] flex flex-col pt-10 px-4 pb-3 overflow-hidden">
+      <div className="absolute top-0 right-0 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Back + header row */}
-      <div className="flex items-center justify-between mb-5 relative z-10 w-full">
-        <div className="flex items-center gap-1.5 bg-[#140b28]/80 backdrop-blur-md border border-purple-900/40 rounded-full px-3 py-1.5 shadow-[0_4px_12px_rgba(0,0,0,0.2)]">
+      {/* ── Row 1: back pill + share ── */}
+      <div className="flex justify-between items-center mb-3 relative z-10">
+        <div className="flex items-center gap-1.5 bg-[#160D2A] border border-purple-900/30 rounded-full px-3 py-1.5">
           <ArrowLeft className="w-3.5 h-3.5 text-purple-400" />
-          <span className="text-purple-200/90 font-semibold text-[10px] tracking-wide">Habit Swap</span>
+          <span className="text-purple-200/80 font-semibold text-[11px] tracking-wide">Habit Swap</span>
         </div>
-        <div className="bg-gradient-to-r from-emerald-500 to-emerald-400 px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[0_0_16px_rgba(52,211,153,0.3)] border border-emerald-300/20">
-          <span className="text-emerald-950 font-extrabold text-[9px] tracking-widest uppercase">Share</span>
-          <Share2 className="w-3 h-3 text-emerald-950" strokeWidth={2.5} />
+        <div className="bg-[#22C55E] px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+          <span className="text-emerald-950 font-extrabold text-[11px] tracking-wider uppercase">Share</span>
+          <Share2 className="w-[14px] h-[14px] text-emerald-950" strokeWidth={2.5} />
         </div>
       </div>
 
-      <h2 className="text-white font-extrabold text-[24px] leading-[1.1] tracking-tight mb-5 relative z-10 w-full drop-shadow-md">
-        Brain Rewire<br/>Dashboard
-      </h2>
+      {/* ── Row 2: title + share ── */}
+      <div className="flex justify-between items-start mb-4 relative z-10">
+        <h2 className="text-white font-extrabold text-[22px] leading-[1.05] tracking-tight max-w-[160px]">
+          Brain Rewire<br />Dashboard
+        </h2>
+      </div>
 
-      {/* Progress ring */}
-      <div className="relative w-[130px] h-[130px] mx-auto flex flex-col items-center justify-center mb-6 relative z-10">
-        <svg className="absolute inset-0 w-full h-full -rotate-90 drop-shadow-[0_0_20px_rgba(168,85,247,0.3)]" viewBox="0 0 130 130">
-          <circle cx="65" cy="65" r="56" stroke="rgba(20,11,40,0.8)" strokeWidth="8" fill="none" />
-          <circle cx="65" cy="65" r="56" stroke="url(#dg3)" strokeWidth="8" strokeDasharray="351" strokeDashoffset="327" strokeLinecap="round" fill="none" />
+      {/* ── Row 3: centered progress ring ── */}
+      <div className="relative w-[150px] h-[150px] mx-auto flex flex-col items-center justify-center mb-4 relative z-10">
+        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="64" stroke="#1A0F30" strokeWidth="10" fill="none" />
+          <circle cx="75" cy="75" r="64" stroke="url(#dashGrad)" strokeWidth="10"
+            strokeDasharray="402" strokeDashoffset="376"
+            strokeLinecap="round" fill="none"
+            style={{ filter: 'drop-shadow(0 0 10px rgba(168,85,247,0.6))' }} />
           <defs>
-            <linearGradient id="dg3" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#A855F7" /><stop offset="100%" stopColor="#3B82F6" />
+            <linearGradient id="dashGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#A855F7" />
+              <stop offset="100%" stopColor="#7C3AED" />
             </linearGradient>
           </defs>
         </svg>
-        <span className="text-transparent bg-clip-text bg-gradient-to-br from-white to-purple-200 font-black text-[34px] tracking-tighter leading-none mt-1">6.6%</span>
-        <span className="text-purple-300/50 text-[10px] text-center leading-tight max-w-[70px] font-bold mt-1 tracking-wider uppercase">rewired</span>
+        <span className="text-purple-400 font-black text-[38px] tracking-tighter leading-none mt-1">6.6%</span>
+        <span className="text-purple-200/60 text-[10px] text-center leading-[1.2] max-w-[80px] font-medium tracking-wide mt-0.5">
+          neural pathways rewired
+        </span>
       </div>
 
-      {/* Streak Box */}
-      <div className="w-full bg-gradient-to-r from-[#170a2b] to-[#0c0618] border border-purple-500/20 rounded-[20px] p-4 flex items-center justify-between overflow-hidden relative shadow-[0_12px_32px_rgba(0,0,0,0.5)] mb-4 z-10 backdrop-blur-xl">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-transparent pointer-events-none" />
-        <div className="relative z-10 flex flex-col justify-center">
-          <p className="text-purple-300/40 text-[9px] font-bold tracking-[0.25em] uppercase mb-1">Current Streak</p>
-          <div className="flex items-baseline gap-1.5">
-            <p className="text-white font-black text-[26px] leading-none tracking-tighter">3</p>
-            <span className="text-[11px] font-bold text-purple-300/50 uppercase tracking-widest">Days</span>
-          </div>
+      {/* ── Row 4: streak card — full width ── */}
+      <div className="w-full bg-[#1A0F30] border border-purple-500/20 rounded-2xl p-4 flex items-center justify-center mb-3 relative z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-500/10 blur-xl opacity-50 pointer-events-none" />
+        <div className="flex items-center gap-3 z-10">
+          <Flame className="w-7 h-7 text-orange-500 fill-orange-500 drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
+          <span className="text-white text-[34px] font-black tracking-tight leading-none">3</span>
         </div>
-        <div className="w-11 h-11 rounded-full bg-gradient-to-b from-orange-500/15 to-orange-900/15 border border-orange-500/30 flex items-center justify-center shadow-[inset_0_0_12px_rgba(249,115,22,0.2),0_0_16px_rgba(249,115,22,0.25)] relative z-10">
-          <Flame className="w-4.5 h-4.5 text-orange-400 fill-orange-400 drop-shadow-[0_0_10px_rgba(249,115,22,0.6)]" />
-        </div>
+        <span className="text-purple-300 font-semibold text-[13px] tracking-wide ml-3 z-10">day streak</span>
       </div>
 
-      {/* Danger Window */}
-      <div className="w-full mb-5 relative z-10">
-        <h4 className="text-purple-200/50 font-bold text-[10px] mb-2.5 tracking-[0.15em] uppercase">Danger Window</h4>
-        <div className="w-full h-[44px] bg-[#100820]/80 backdrop-blur-md border border-orange-500/20 rounded-xl flex items-center px-4 gap-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
-          <Flame className="w-4 h-4 text-orange-500/80 flex-shrink-0" />
-          <div className="flex-1 flex items-center justify-between">
-            <span className="text-orange-200/80 text-[12px] font-semibold tracking-wide">8pm – 11pm</span>
-            <span className="bg-orange-500/10 text-orange-400 px-2.5 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider border border-orange-500/20">High Risk</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Top Urges */}
-      <div className="w-full relative z-10 mt-auto">
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="text-purple-200/50 font-bold text-[10px] tracking-[0.15em] uppercase">Top Urges</h4>
-          <TrendingUp className="w-3.5 h-3.5 text-purple-400/40" />
-        </div>
-        <div className="flex flex-col gap-3.5">
-          {urges.map((u, i) => (
-            <div key={i} className="w-full group">
-              <div className="flex justify-between items-center mb-1.5">
-                <span className="text-purple-100/80 text-[11px] font-semibold tracking-wide">{u.label}</span>
-                <span className="text-purple-300/70 text-[10px] font-bold tracking-wider">{u.pct}%</span>
+      {/* ── Row 5: This Week grid — full width ── */}
+      <div className="w-full mb-3 relative z-10">
+        <h4 className="text-white font-bold text-[12px] mb-2 tracking-wide">This Week</h4>
+        <div className="flex justify-between gap-1 w-full">
+          {days.map((item, i) => (
+            <div key={i} className="flex flex-col items-center gap-1">
+              <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-[12px] font-bold
+                ${item.v !== null
+                  ? 'bg-[#A855F7] text-white shadow-[0_4px_15px_rgba(168,85,247,0.3)]'
+                  : 'bg-[#1A0F30] border border-purple-900/40 text-transparent'
+                }`}>
+                {item.v}
               </div>
-              <div className="w-full h-[6px] bg-[#0c0618] border border-white/5 rounded-full overflow-hidden shadow-[inset_0_1px_4px_rgba(0,0,0,0.8)]">
-                <div
-                  className="h-full rounded-full transition-all duration-1000 ease-out"
-                  style={{
-                    width: `${u.pct}%`,
-                    background: `linear-gradient(90deg, ${u.color}, ${u.color}ee)`,
-                    boxShadow: `0 0 10px ${u.color}50`,
-                  }}
-                />
+              <span className="text-purple-200/50 text-[10px] font-black">{item.d}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Row 6: Danger Window ── */}
+      <div className="w-full mb-2.5 relative z-10">
+        <h4 className="text-white font-bold text-[12px] mb-1.5 tracking-wide">Danger Window</h4>
+        <div className="w-full h-9 bg-[#1A0F30] border border-orange-500/20 rounded-2xl flex items-center justify-center gap-2">
+          <Flame className="w-4 h-4 text-orange-500/50" />
+          <span className="text-orange-300/50 text-[11px] font-semibold tracking-wide">8pm – 11pm</span>
+        </div>
+      </div>
+
+      {/* ── Row 7: Top Urges ── */}
+      <div className="w-full relative z-10">
+        <div className="flex items-center justify-between mb-1.5">
+          <h4 className="text-white font-bold text-[12px] tracking-wide">Top Urges</h4>
+          <TrendingUp className="w-3.5 h-3.5 text-purple-400/50" />
+        </div>
+        <div className="flex flex-col gap-2">
+          {urges.map((u, i) => (
+            <div key={i} className="w-full">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-purple-200/70 text-[11px] font-semibold">{u.label}</span>
+                <span className="text-purple-300/50 text-[10px] font-bold">{u.pct}%</span>
+              </div>
+              <div className="w-full h-[5px] bg-[#1A0F30] rounded-full overflow-hidden">
+                <div className="h-full rounded-full" style={{
+                  width: `${u.pct}%`,
+                  background: `linear-gradient(90deg, ${u.color}, ${u.color}cc)`,
+                  boxShadow: `0 0 6px ${u.color}60`,
+                }} />
               </div>
             </div>
           ))}
@@ -264,7 +284,7 @@ const PremiumPreview = () => {
   const dot3Op = useTransform(scrollYProgress, [0.46, 0.55, 1], [0, 1, 1]);
 
   return (
-    <section ref={containerRef} className="relative bg-black text-white" style={{ height: '600vh' }}>
+    <section ref={containerRef} className="relative bg-black text-white" style={{ height: '480vh' }}>
       <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
 
         {/* Ambient glow */}
@@ -275,14 +295,14 @@ const PremiumPreview = () => {
         {/* Title */}
         <motion.div
           style={{ opacity: titleOpacity, y: titleY }}
-          className="absolute top-0 left-0 right-0 flex flex-col items-center pt-14 md:pt-20 z-40 pointer-events-none"
+          className="absolute top-0 left-0 right-0 flex flex-col items-center pt-8 sm:pt-14 md:pt-20 z-40 pointer-events-none"
         >
-          <p className="text-purple-400/55 text-[10px] font-bold tracking-[0.35em] uppercase mb-3">The anatomy of a swap</p>
-          <h2 className="text-white font-black text-[clamp(2.2rem,4.8vw,4.2rem)] tracking-tight text-center leading-none mb-3">
+          <p className="text-purple-400/55 text-[10px] font-bold tracking-[0.35em] uppercase mb-2 lg:mb-3">The anatomy of a swap</p>
+          <h2 className="text-white font-black tracking-tight text-center leading-none mb-2 lg:mb-3" style={{ fontSize: 'clamp(1.7rem, 4.8vw, 4.2rem)' }}>
             How it works.
           </h2>
-          <p className="text-gray-600 font-light text-sm text-center max-w-xs">Scroll to watch the rewire happen.</p>
-          <div className="mt-7 flex flex-col items-center gap-1 animate-bounce">
+          <p className="text-gray-600 font-light text-xs lg:text-sm text-center max-w-xs hidden sm:block">Scroll to watch the rewire happen.</p>
+          <div className="mt-4 lg:mt-7 hidden sm:flex flex-col items-center gap-1 animate-bounce">
             <div className="w-5 h-8 border border-white/10 rounded-full flex items-start justify-center pt-1.5">
               <div className="w-1 h-2 bg-white/20 rounded-full" />
             </div>
@@ -319,43 +339,57 @@ const PremiumPreview = () => {
           </div>
         </motion.div>
 
-        {/* Phone */}
+        {/* Phone — smaller on mobile so title + captions have breathing room */}
         <motion.div
-          style={{ x: isMobile ? 0 : phoneX, y: phoneY, scale: phoneScale }}
-          className="relative z-20 w-[295px] sm:w-[310px] h-[630px] sm:h-[660px] flex-shrink-0"
+          className="relative z-20 flex-shrink-0"
+          style={{
+            x: isMobile ? 0 : phoneX,
+            y: phoneY,
+            scale: phoneScale,
+            width: isMobile ? 260 : 310,
+            height: isMobile ? 520 : 660,
+          }}
         >
-          <div className="absolute inset-0 rounded-[52px] bg-gradient-to-b from-[#252528] to-[#0d0d0f] border border-[#303035] p-[5px] shadow-[0_50px_100px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.03),inset_0_1px_0_rgba(255,255,255,0.07)]">
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-[#252528] to-[#0d0d0f] border border-[#303035] p-[5px] shadow-[0_50px_100px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.03),inset_0_1px_0_rgba(255,255,255,0.07)]"
+            style={{ borderRadius: isMobile ? 44 : 52 }}
+          >
             <div className="absolute top-[10px] inset-x-0 flex justify-center z-50 pointer-events-none">
-              <div className="w-[96px] h-[25px] bg-black rounded-full" />
+              <div className="bg-black rounded-full" style={{ width: isMobile ? 82 : 96, height: isMobile ? 22 : 25 }} />
             </div>
-            <div className="bg-[#070410] w-full h-full rounded-[46px] relative overflow-hidden border border-black/50 isolate">
+            <div
+              className="bg-[#070410] w-full h-full relative overflow-hidden border border-black/50 isolate"
+              style={{ borderRadius: isMobile ? 38 : 46 }}
+            >
               <div className="absolute inset-0" style={{ zIndex: 10 }}>
                 <Screen1 opacity={screen1Opacity} buttonScale={swapBtnScale} />
               </div>
               <div className="absolute inset-0" style={{ zIndex: 20 }}>
                 <Screen2 opacity={screen2Opacity} buttonScale={doneBtnScale} />
               </div>
-              {/* z-30: always on top, solid bg — no bleed regardless of opacity value */}
               <div className="absolute inset-0" style={{ zIndex: 30 }}>
                 <Screen3 opacity={screen3Opacity} />
               </div>
             </div>
           </div>
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-10 bg-purple-700/15 blur-2xl rounded-full pointer-events-none" />
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-8 bg-purple-700/15 blur-2xl rounded-full pointer-events-none" />
         </motion.div>
 
-        {/* Mobile captions */}
-        <div className="lg:hidden absolute bottom-24 left-0 right-0 px-6 pointer-events-none z-30 h-24">
-          <motion.div style={{ opacity: text2Opacity }} className="absolute inset-x-6 top-0 text-center">
-            <div className="w-8 h-[2px] bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-2.5 rounded-full" />
-            <h3 className="text-white font-black text-lg mb-1.5">Instant Intervention.</h3>
-            <p className="text-gray-500 text-sm font-light">Curated tasks redirect dopamine instantly.</p>
-          </motion.div>
-          <motion.div style={{ opacity: text3Opacity }} className="absolute inset-x-6 top-0 text-center">
-            <div className="w-8 h-[2px] bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto mb-2.5 rounded-full" />
-            <h3 className="text-white font-black text-lg mb-1.5">Rewire your brain.</h3>
-            <p className="text-gray-500 text-sm font-light">Track urge patterns and danger windows.</p>
-          </motion.div>
+        {/* Mobile captions — appear BELOW the phone, no overlap.
+            The phone on mobile is 520px, viewport ~700–900px, so bottom area has ~100–180px free. */}
+        <div className="lg:hidden absolute bottom-10 left-0 right-0 px-6 pointer-events-none z-30">
+          <div className="relative h-16">
+            <motion.div style={{ opacity: text2Opacity }} className="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <div className="w-6 h-[2px] bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-2 rounded-full" />
+              <h3 className="text-white font-bold text-base mb-0.5 tracking-tight">Instant Intervention.</h3>
+              <p className="text-gray-600 text-xs font-light">Science-backed tasks redirect dopamine instantly.</p>
+            </motion.div>
+            <motion.div style={{ opacity: text3Opacity }} className="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <div className="w-6 h-[2px] bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto mb-2 rounded-full" />
+              <h3 className="text-white font-bold text-base mb-0.5 tracking-tight">Rewire your brain.</h3>
+              <p className="text-gray-600 text-xs font-light">Track urge patterns and danger windows live.</p>
+            </motion.div>
+          </div>
         </div>
 
         {/* Step dots */}
