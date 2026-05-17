@@ -12,7 +12,7 @@ const quotes = [
 
 const allQuotes = [...quotes, ...quotes];
 
-const QuoteCard = ({ quote }: { quote: typeof quotes[0] }) => (
+const QuoteCard: React.FC<{ quote: typeof quotes[0] }> = ({ quote }) => (
   <div className="inline-flex flex-col mx-3 w-[340px] bg-[#09090c] border border-white/[0.05] rounded-2xl p-6 flex-shrink-0 group hover:border-purple-500/20 hover:bg-[#0d0a18] transition-all duration-500 cursor-default">
     <div className="flex items-center justify-between mb-4">
       <div className="flex gap-0.5">
