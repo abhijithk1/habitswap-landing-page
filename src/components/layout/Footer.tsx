@@ -68,8 +68,9 @@ export default function Footer() {
                 Terms of Service
               </Link>
               <a href="mailto:habitswap.app@gmail.com"
-                className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm mt-2">
-                habitswap.app@gmail.com
+                className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm mt-2 flex items-center gap-2 group">
+                <span>Contact Us &rarr;</span>
+                <span className="text-purple-200/20 group-hover:text-purple-200/60 transition-colors">habitswap.app@gmail.com</span>
               </a>
             </div>
           </div>
