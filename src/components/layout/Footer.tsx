@@ -64,9 +64,9 @@ export default function Footer() {
               <Link to="/privacy" className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm">
                 Privacy Policy
               </Link>
-              <a href="#" className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm">
+              <Link to="/terms" className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm">
                 Terms of Service
-              </a>
+              </Link>
               <a href="mailto:habitswap.app@gmail.com"
                 className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm mt-2">
                 habitswap.app@gmail.com
