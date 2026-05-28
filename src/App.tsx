@@ -5,6 +5,7 @@ import Layout from './components/layout/Layout';
 import LandingPage from './pages/LandingPage';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
+import DeleteAccountPage from './pages/DeleteAccountPage';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
             <Route index element={<LandingPage />} />
             <Route path="privacy" element={<PrivacyPage />} />
             <Route path="terms" element={<TermsPage />} />
+            <Route path="delete-account" element={<DeleteAccountPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

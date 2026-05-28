@@ -67,6 +67,9 @@ export default function Footer() {
               <Link to="/terms" className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm">
                 Terms of Service
               </Link>
+              <Link to="/delete-account" className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm">
+                Delete Account
+              </Link>
               <a href="mailto:habitswap.app@gmail.com"
                 className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm mt-2 flex items-center gap-2 group">
                 <span>Contact Us &rarr;</span>
