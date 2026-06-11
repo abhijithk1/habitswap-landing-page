@@ -82,7 +82,7 @@ const HeroSection = () => (
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
         </span>
         <span className="text-purple-200/80 text-[11px] font-semibold tracking-[0.2em] uppercase">
-          Now Free on iOS & Android
+          Private Beta Now Open
         </span>
       </motion.div>
 
@@ -134,7 +134,7 @@ const HeroSection = () => (
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
         >
           <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12" />
-          <span className="relative z-10">Break the Loop — Free</span>
+          <span className="relative z-10">Join the Waitlist</span>
         </button>
 
         {/* Ghost */}
