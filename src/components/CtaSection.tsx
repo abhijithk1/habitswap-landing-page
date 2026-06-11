@@ -29,8 +29,9 @@ const CtaSection = () => {
         
       if (error) {
         console.error('Error inserting email:', error);
-        // We'll still show success to the user so they feel their action was recorded
-        // but logging for you here. If you want to show an error, you can add an error state.
+        alert(error.message || 'Failed to join waitlist. Please try again.');
+        setStatus('idle');
+        return;
       }
       
       setStatus('success');

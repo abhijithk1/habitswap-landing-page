@@ -11,10 +11,9 @@ export default function Footer() {
         style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(88,28,135,0.12) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-10 mb-16">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand — spans 2 cols on tablet and desktop */}
-          <div className="md:col-span-2 space-y-5">
+          <div className="sm:col-span-2 space-y-5">
             <Link to="/" className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-purple-500 to-violet-700 flex items-center justify-center shadow-[0_0_12px_rgba(139,92,246,0.28)]">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-4 h-4">
@@ -71,7 +70,7 @@ export default function Footer() {
                 Delete Account
               </Link>
               <a href="mailto:habitswap.app@gmail.com"
-                className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm mt-2 flex items-center gap-2 group">
+                className="text-purple-200/35 hover:text-white transition-colors duration-200 font-medium text-sm flex items-center gap-2 group">
                 <span>Contact Us &rarr;</span>
                 <span className="text-purple-200/20 group-hover:text-purple-200/60 transition-colors">habitswap.app@gmail.com</span>
               </a>
