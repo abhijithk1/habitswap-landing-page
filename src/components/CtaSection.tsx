@@ -1,48 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Check } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import React from 'react';
+import { motion } from 'motion/react';
 
 const CtaSection = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    
-    setStatus('submitting');
-    
-    try {
-      if (!supabase) {
-        console.warn('Supabase not configured. Simulating success.');
-        setTimeout(() => {
-          setStatus('success');
-          setEmail('');
-        }, 1200);
-        return;
-      }
-
-      const { error } = await supabase
-        .from('waitlist')
-        .insert([{ email }]);
-        
-      if (error) {
-        console.error('Error inserting email:', error);
-        alert(error.message || 'Failed to join waitlist. Please try again.');
-        setStatus('idle');
-        return;
-      }
-      
-      setStatus('success');
-      setEmail('');
-    } catch (err) {
-      console.error('Unexpected error:', err);
-      setStatus('success');
-      setEmail('');
-    }
-  };
-
   return (
     <section id="download" className="relative py-40 bg-black overflow-hidden">
 
@@ -85,7 +44,7 @@ const CtaSection = () => {
           viewport={{ once: true }}
           className="text-purple-400/55 text-[11px] font-bold tracking-[0.3em] uppercase mb-6"
         >
-          Early Access Program
+          Now Available
         </motion.p>
 
         {/* ── Main headline ── */}
@@ -108,7 +67,7 @@ const CtaSection = () => {
           </span>
         </motion.h2>
 
-        {/* ── Urgency stat ── */}
+        {/* ── Description ── */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -116,67 +75,27 @@ const CtaSection = () => {
           transition={{ delay: 0.15 }}
           className="text-purple-200/38 text-lg font-light leading-relaxed mb-12 max-w-lg mx-auto"
         >
-          Space in the private iOS & Android beta is strictly limited. Join the waitlist to secure your spot and start rewiring your brain.
+          Habit Swap is now live on the Google Play store. Get the app today and start rewiring your brain.
         </motion.p>
 
-        {/* ── Premium Waitlist Form ── */}
+        {/* ── CTA Button ── */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.25 }}
-          className="max-w-md mx-auto mb-14 relative"
+          className="flex justify-center mb-14 relative"
         >
-          <AnimatePresence mode="wait">
-            {status !== 'success' ? (
-              <motion.form
-                key="form"
-                onSubmit={handleSubmit}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="relative flex items-center"
-              >
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address..."
-                  disabled={status === 'submitting'}
-                  className="w-full bg-[#100820]/80 border border-purple-500/20 text-white rounded-2xl py-4 pl-6 pr-32 focus:outline-none focus:border-purple-400/50 shadow-[0_0_30px_rgba(88,28,135,0.15)] transition-all placeholder:text-purple-200/20 disabled:opacity-50"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                />
-                <button
-                  type="submit"
-                  disabled={status === 'submitting'}
-                  className="absolute right-2 top-2 bottom-2 bg-white text-black px-6 rounded-xl font-bold tracking-wide flex items-center gap-2 hover:bg-gray-100 transition-colors disabled:opacity-80"
-                  style={{ fontFamily: "'Syne', sans-serif" }}
-                >
-                  {status === 'submitting' ? (
-                    <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
-                  ) : (
-                    <>
-                      Join <ArrowRight className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
-              </motion.form>
-            ) : (
-              <motion.div
-                key="success"
-                initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                className="flex flex-col items-center justify-center p-6 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl"
-              >
-                <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center mb-3">
-                  <Check className="w-5 h-5 text-emerald-400" />
-                </div>
-                <h4 className="text-white font-bold text-lg mb-1" style={{ fontFamily: "'Syne', sans-serif" }}>You're on the list.</h4>
-                <p className="text-purple-200/50 text-sm">Keep an eye on your inbox for early access.</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.abhijithk.habitswap"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden bg-white text-black py-4 px-10 rounded-[26px] text-lg tracking-wide transition-transform duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(255,255,255,0.12)] block"
+            style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
+          >
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12" />
+            <span className="relative z-10">Get it on Google Play</span>
+          </a>
         </motion.div>
 
         {/* ── Trust badges ── */}
@@ -187,7 +106,7 @@ const CtaSection = () => {
           transition={{ delay: 0.38 }}
           className="flex items-center justify-center gap-5 flex-wrap"
         >
-          {['Private Beta', 'No spam ever', 'iOS & Android Drop'].map((t, i) => (
+          {['Free to download', 'No spam ever', 'Google Play Store'].map((t, i) => (
             <div key={i} className="flex items-center gap-1.5">
               <div className="w-1 h-1 rounded-full bg-purple-500/50" />
               <span className="text-purple-300/35 text-[13px] font-medium">{t}</span>

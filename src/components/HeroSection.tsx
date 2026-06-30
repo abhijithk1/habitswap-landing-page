@@ -82,7 +82,7 @@ const HeroSection = () => (
           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
         </span>
         <span className="text-purple-200/80 text-[11px] font-semibold tracking-[0.2em] uppercase">
-          Private Beta Now Open
+          Now Live on Google Play
         </span>
       </motion.div>
 
@@ -128,14 +128,16 @@ const HeroSection = () => (
         className="flex flex-col sm:flex-row items-center gap-4 mb-16"
       >
         {/* Primary */}
-        <button
-          onClick={() => document.getElementById('download')?.scrollIntoView({ behavior: 'smooth' })}
-          className="group relative overflow-hidden bg-white text-black py-4 px-9 rounded-[26px] text-lg tracking-wide transition-transform duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(255,255,255,0.12)]"
+        <a
+          href="https://play.google.com/store/apps/details?id=com.abhijithk.habitswap"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative overflow-hidden bg-white text-black py-4 px-9 rounded-[26px] text-lg tracking-wide transition-transform duration-300 hover:scale-[1.03] shadow-[0_0_40px_rgba(255,255,255,0.12)] block"
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
         >
           <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-12" />
-          <span className="relative z-10">Join the Waitlist</span>
-        </button>
+          <span className="relative z-10">Download on Google Play</span>
+        </a>
 
         {/* Ghost */}
         <button
